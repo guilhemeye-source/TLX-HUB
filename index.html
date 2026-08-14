@@ -15,7 +15,7 @@
 body{
   font-family:Arial,sans-serif;
   background:#0d0f12;
-  color:white;
+  color:#fff;
   height:100vh;
 }
 
@@ -141,6 +141,7 @@ body{
 .avatar{
   width:44px;
   height:44px;
+  min-width:44px;
   border-radius:50%;
   background:#7c5cff;
   display:flex;
@@ -165,12 +166,26 @@ body{
   flex:1;
   display:flex;
   flex-direction:column;
+  min-width:0;
 }
 
 .chat-header{
+  height:65px;
   padding:17px 20px;
   border-bottom:1px solid #292e36;
   font-weight:bold;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.back{
+  display:none;
+  border:0;
+  background:transparent;
+  color:white;
+  font-size:22px;
+  cursor:pointer;
 }
 
 .messages{
@@ -205,6 +220,7 @@ body{
 
 .message-box input{
   flex:1;
+  min-width:0;
   padding:13px;
   border-radius:10px;
   border:1px solid #303640;
@@ -215,6 +231,7 @@ body{
 
 .message-box button{
   width:55px;
+  min-width:55px;
   border:0;
   border-radius:10px;
   background:#7c5cff;
@@ -229,21 +246,28 @@ body{
   align-items:center;
   justify-content:center;
   color:#666;
+  text-align:center;
 }
 
 /* MOBILE */
 
 @media(max-width:700px){
 
+  .app{
+    position:relative;
+    overflow:hidden;
+  }
+
   .sidebar{
     width:100%;
+    border-right:0;
   }
 
   .conversation{
-    display:none;
-  }
-
-  .sidebar.mobile-hidden{
+    position:absolute;
+    inset:0;
+    width:100%;
+    background:#0d0f12;
     display:none;
   }
 
@@ -251,10 +275,16 @@ body{
     display:flex;
   }
 
+  .sidebar.mobile-hidden{
+    display:none;
+  }
+
   .back{
-    display:inline-block;
-    margin-right:10px;
-    cursor:pointer;
+    display:block;
+  }
+
+  .message{
+    max-width:82%;
   }
 }
 </style>
@@ -333,13 +363,30 @@ body{
         Escolha uma pessoa para conversar
       </div>
 
-      <div id="activeChat" style="display:none;height:100%;flex-direction:column">
+      <div
+        id="activeChat"
+        style="display:none;height:100%;flex-direction:column"
+      >
 
-        <div class="chat-header" id="chatHeader">
-          Conversa
+        <div class="chat-header">
+
+          <button
+            class="back"
+            onclick="backToUsers()"
+          >
+            ←
+          </button>
+
+          <span id="chatHeader">
+            Conversa
+          </span>
+
         </div>
 
-        <div class="messages" id="messages"></div>
+        <div
+          class="messages"
+          id="messages"
+        ></div>
 
         <div class="message-box">
 
@@ -366,14 +413,6 @@ body{
 
 <script>
 
-/*
-  DADOS LOCAIS
-
-  Esta versão usa localStorage.
-  Para chat real entre celulares diferentes,
-  será necessário um backend/banco de dados.
-*/
-
 let currentUser = null;
 let selectedUser = null;
 
@@ -381,13 +420,17 @@ let selectedUser = null;
 /* CONTAS */
 
 let accounts =
-  JSON.parse(localStorage.getItem("chat_accounts") || "[]");
+  JSON.parse(
+    localStorage.getItem("chat_accounts") || "[]"
+  );
 
 
 /* MENSAGENS */
 
 let messages =
-  JSON.parse(localStorage.getItem("chat_messages") || "{}");
+  JSON.parse(
+    localStorage.getItem("chat_messages") || "{}"
+  );
 
 
 /* LOGIN */
@@ -408,22 +451,24 @@ function login(){
     showError("Digite um nome válido.");
 
     return;
-
   }
 
 
   if(password.length < 3){
 
-    showError("A senha precisa ter pelo menos 3 caracteres.");
+    showError(
+      "A senha precisa ter pelo menos 3 caracteres."
+    );
 
     return;
-
   }
 
 
   let user =
     accounts.find(
-      u => u.name.toLowerCase() === name.toLowerCase()
+      u =>
+        u.name.toLowerCase() ===
+        name.toLowerCase()
     );
 
 
@@ -434,7 +479,6 @@ function login(){
       showError("Senha incorreta.");
 
       return;
-
     }
 
   }else{
@@ -447,20 +491,18 @@ function login(){
     accounts.push(user);
 
     saveAccounts();
-
   }
 
 
   currentUser = user;
 
-  document.getElementById("login").style.display =
-    "none";
+  document.getElementById("login")
+    .style.display = "none";
 
-  document.getElementById("chat").style.display =
-    "block";
+  document.getElementById("chat")
+    .style.display = "block";
 
   renderUsers();
-
 }
 
 
@@ -470,11 +512,10 @@ function showError(text){
 
   document.getElementById("error")
     .textContent = text;
-
 }
 
 
-/* USUÁRIOS */
+/* LISTA DE USUÁRIOS */
 
 function renderUsers(){
 
@@ -483,25 +524,35 @@ function renderUsers(){
 
   const search =
     document.getElementById("search")
-      .value.toLowerCase();
+      .value
+      .toLowerCase();
 
 
   const filtered =
     accounts.filter(user =>
+
       user.name !== currentUser.name &&
-      user.name.toLowerCase().includes(search)
+
+      user.name
+        .toLowerCase()
+        .includes(search)
+
     );
 
 
   if(filtered.length === 0){
 
-    list.innerHTML =
-      `<div style="padding:25px;color:#666;text-align:center">
+    list.innerHTML = `
+      <div style="
+        padding:25px;
+        color:#666;
+        text-align:center
+      ">
         Nenhuma pessoa encontrada.
-      </div>`;
+      </div>
+    `;
 
     return;
-
   }
 
 
@@ -515,7 +566,11 @@ function renderUsers(){
 
     div.className =
       "user" +
-      (selectedUser === user.name ? " active" : "");
+      (
+        selectedUser === user.name
+        ? " active"
+        : ""
+      );
 
 
     div.onclick =
@@ -525,7 +580,11 @@ function renderUsers(){
     div.innerHTML = `
 
       <div class="avatar">
-        ${escapeHTML(user.name.charAt(0).toUpperCase())}
+        ${escapeHTML(
+          user.name
+            .charAt(0)
+            .toUpperCase()
+        )}
       </div>
 
       <div>
@@ -546,7 +605,6 @@ function renderUsers(){
     list.appendChild(div);
 
   });
-
 }
 
 
@@ -566,6 +624,14 @@ function openChat(username){
   selectedUser = username;
 
 
+  document.getElementById("sidebar")
+    .classList.add("mobile-hidden");
+
+
+  document.getElementById("conversation")
+    .classList.add("mobile-show");
+
+
   document.getElementById("noChat")
     .style.display = "none";
 
@@ -580,9 +646,42 @@ function openChat(username){
 
   renderMessages();
 
-
   renderUsers();
 
+
+  setTimeout(() => {
+
+    document.getElementById("messageInput")
+      .focus();
+
+  },100);
+}
+
+
+/* VOLTAR PARA USUÁRIOS */
+
+function backToUsers(){
+
+  selectedUser = null;
+
+
+  document.getElementById("sidebar")
+    .classList.remove("mobile-hidden");
+
+
+  document.getElementById("conversation")
+    .classList.remove("mobile-show");
+
+
+  document.getElementById("activeChat")
+    .style.display = "none";
+
+
+  document.getElementById("noChat")
+    .style.display = "flex";
+
+
+  renderUsers();
 }
 
 
@@ -624,15 +723,17 @@ function renderMessages(){
     const div =
       document.createElement("div");
 
+
     div.className =
       "message" +
-      (msg.from === currentUser.name
+      (
+        msg.from === currentUser.name
         ? " mine"
-        : "");
+        : ""
+      );
 
 
-    div.textContent =
-      msg.text;
+    div.textContent = msg.text;
 
 
     container.appendChild(div);
@@ -642,11 +743,10 @@ function renderMessages(){
 
   container.scrollTop =
     container.scrollHeight;
-
 }
 
 
-/* ENVIAR */
+/* ENVIAR MENSAGEM */
 
 function sendMessage(){
 
@@ -695,6 +795,7 @@ function sendMessage(){
 
   renderMessages();
 
+  input.focus();
 }
 
 
@@ -704,10 +805,11 @@ function enterMessage(event){
 
   if(event.key === "Enter"){
 
+    event.preventDefault();
+
     sendMessage();
 
   }
-
 }
 
 
@@ -738,10 +840,9 @@ function escapeHTML(text){
     .replace(/"/g,"&quot;")
 
     .replace(/'/g,"&#039;");
-
 }
 
 </script>
 
 </body>
-</html>
+  </html>
