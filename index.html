@@ -1,33 +1,1261 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Minha Página de Links</title>
-<meta name="description" content="Página de links personalizável para publicar no GitHub Pages">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PageMaker</title>
+
 <style>
-:root{--bg:#f4eee2;--ink:#252321;--card:#fffaf1;--accent:#e86a3d}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:grid;grid-template-columns:1.15fr .85fr}.preview{min-height:100vh;padding:28px 6vw;display:flex;flex-direction:column;align-items:center;background-image:radial-gradient(#c7a99033 1px,transparent 1px);background-size:14px 14px}.top{width:min(100%,520px);display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.eyebrow,.label,.note,.footer{text-transform:uppercase;letter-spacing:.13em;font-size:10px;font-weight:bold}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:7px}.copy{border:1px solid #25232133;background:#fff8;padding:9px;border-radius:50%}.phone{width:min(100%,520px);padding:9px;background:#252321;box-shadow:18px 20px #2523211f,0 25px 55px #2523212b;transform:rotate(-1deg)}.paper{min-height:620px;background:var(--card);padding:28px clamp(22px,7vw,58px);display:flex;flex-direction:column;position:relative;overflow:hidden}.brand{font-family:Georgia,serif;color:var(--accent);font-size:15px}.profile{text-align:center;margin:38px 0 26px}.avatar{width:82px;height:82px;border-radius:50%;display:grid;place-items:center;margin:auto auto 14px;background:var(--accent);color:#fffaf1;font:bold 32px Georgia;overflow:hidden;border:4px solid var(--card);box-shadow:0 0 0 1px #25232125}.avatar img{width:100%;height:100%;object-fit:cover}.profile h1{font:700 38px Georgia;margin:0;letter-spacing:-.05em}.handle{color:var(--accent);font-weight:bold;font-size:13px;margin:8px 0}.bio{max-width:340px;margin:12px auto 0;font-size:13px;line-height:1.5;opacity:.7}.links{display:grid;gap:12px}.link{min-height:56px;display:flex;align-items:center;gap:12px;padding:0 14px 0 11px;color:var(--ink);text-decoration:none;background:var(--card);border:1px solid #25232122;box-shadow:4px 5px #e86a3d38;transition:.18s}.link:hover{transform:translate(-3px,-3px);box-shadow:7px 8px var(--accent)}.link span:nth-child(2){flex:1;font-size:14px;font-weight:bold}.link-icon{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--card)}.footer{display:flex;gap:10px;align-items:center;margin-top:auto;padding-top:28px;opacity:.45;font-size:9px}.line{width:36px;height:1px;background:currentColor}.note{margin:22px 0 0;opacity:.55;font-size:9px}.editor{background:#fffaf1;padding:52px clamp(22px,6vw,78px) 26px;min-height:100vh;display:flex;flex-direction:column}.kicker{color:var(--accent);font-size:10px;font-weight:bold;letter-spacing:.14em;text-transform:uppercase}.editor h2{font:700 50px Georgia;letter-spacing:-.06em;line-height:.98;margin:12px 0}.intro{color:#77716a;font-size:14px;line-height:1.5;max-width:350px}.tabs{display:flex;gap:25px;border-bottom:1px solid #ded6c9;margin-top:44px}.tabs button{border:0;border-bottom:2px solid transparent;background:none;padding:0 0 13px;color:#958b80;font-size:13px;font-weight:bold}.tabs button.active{color:var(--ink);border-color:var(--accent)}.panel{padding-top:30px;max-width:550px}.section{display:flex;gap:15px;margin-bottom:25px}.section strong{color:var(--accent);font-size:10px;letter-spacing:.14em}.section h3{font:700 26px Georgia;margin:0}.section p{color:#8b8379;font-size:13px;margin:8px 0;line-height:1.4}label{display:block;color:#5d574f;font-size:11px;font-weight:bold;margin:18px 0}input,textarea{display:block;width:100%;margin-top:8px;border:1px solid #ded6c9;background:#fffdf9;padding:12px;color:var(--ink);outline:none;border-radius:0}textarea{min-height:92px;resize:vertical}input:focus,textarea:focus{border-color:var(--accent);box-shadow:3px 3px #e86a3d2b}.counter{text-align:right;display:block;color:#9b9287;font-size:10px;margin-top:5px;font-weight:normal}.link-row{display:flex;gap:8px;align-items:center;border:1px solid #ded6c9;background:#fffdf9;padding:9px}.link-row .fields{flex:1}.link-row input{margin:0;padding:8px;border:0;border-bottom:1px solid #e8e0d5;background:transparent}.trash{border:0;background:none;color:#a49b91;padding:8px}.trash:hover{color:#c24d3b}.add{margin-top:17px;width:100%;padding:12px;border:1px dashed #d2c6b9;background:none;color:var(--accent);font-weight:bold}.add:hover{background:#fff4eb;border-color:var(--accent)}.colors{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.color{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:2px 9px;text-align:left;border:1px solid #ded6c9;background:#fffdf9;padding:12px}.color.selected{border:2px solid var(--accent);padding:11px}.swatch{grid-row:1/3;width:30px;height:30px;border:1px solid #0002}.color b{font-size:12px}.color small{font-size:9px;color:#9b9287}.tip{margin-top:23px;padding:15px;background:#f7efe5;color:#796e63;font-size:12px;line-height:1.5}.save{margin-top:auto;padding-top:40px;color:#668067;text-transform:uppercase;letter-spacing:.12em;font-size:10px;font-weight:bold}.hidden{display:none!important}@media(max-width:900px){.app{grid-template-columns:1fr}.preview{min-height:auto;padding-bottom:45px}.editor{min-height:auto}}@media(max-width:520px){.preview{padding:20px 14px 38px}.paper{min-height:570px;padding:24px 20px}.editor{padding:34px 20px 24px}.editor h2{font-size:40px}.colors{grid-template-columns:1fr}}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:#111;
+  color:white;
+}
+
+button,input,textarea{
+  font:inherit;
+}
+
+.app{
+  min-height:100vh;
+}
+
+/* TELA INICIAL */
+
+.home{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  text-align:center;
+  background:linear-gradient(135deg,#111,#24112e);
+}
+
+.home-box{
+  width:100%;
+  max-width:550px;
+}
+
+.logo{
+  font-size:48px;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.home h1{
+  font-size:34px;
+  margin-bottom:12px;
+}
+
+.home p{
+  color:#bbb;
+  margin-bottom:30px;
+  line-height:1.5;
+}
+
+.main-btn{
+  border:0;
+  padding:16px 30px;
+  border-radius:14px;
+  background:#8b5cf6;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.main-btn:hover{
+  transform:scale(1.04);
+}
+
+/* EDITOR */
+
+.editor{
+  display:none;
+  min-height:100vh;
+  background:#0d0d0d;
+}
+
+.topbar{
+  height:65px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  background:#171717;
+  border-bottom:1px solid #292929;
+}
+
+.topbar h2{
+  font-size:20px;
+}
+
+.top-actions{
+  display:flex;
+  gap:8px;
+}
+
+.small-btn{
+  border:0;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.preview-btn{
+  background:#292929;
+  color:white;
+}
+
+.create-btn{
+  background:#8b5cf6;
+  color:white;
+}
+
+.editor-content{
+  display:grid;
+  grid-template-columns:330px 1fr;
+  min-height:calc(100vh - 65px);
+}
+
+.sidebar{
+  background:#151515;
+  padding:20px;
+  overflow:auto;
+  max-height:calc(100vh - 65px);
+}
+
+.sidebar h3{
+  margin:18px 0 10px;
+  font-size:14px;
+  color:#aaa;
+  text-transform:uppercase;
+}
+
+.control{
+  margin-bottom:15px;
+}
+
+.control label{
+  display:block;
+  font-size:13px;
+  color:#ccc;
+  margin-bottom:7px;
+}
+
+.control input[type="text"],
+.control input[type="url"],
+.control textarea{
+  width:100%;
+  border:1px solid #333;
+  background:#222;
+  color:white;
+  border-radius:9px;
+  padding:11px;
+  outline:none;
+}
+
+.control textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+.control input:focus,
+.control textarea:focus{
+  border-color:#8b5cf6;
+}
+
+.control input[type="color"]{
+  width:100%;
+  height:42px;
+  border:0;
+  background:#222;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.control input[type="range"]{
+  width:100%;
+}
+
+.file-label{
+  display:block;
+  padding:11px;
+  background:#252525;
+  border-radius:9px;
+  text-align:center;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.file-label input{
+  display:none;
+}
+
+.add-button{
+  width:100%;
+  border:1px dashed #555;
+  background:#202020;
+  color:white;
+  padding:12px;
+  border-radius:9px;
+  cursor:pointer;
+}
+
+.buttons-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.button-item{
+  padding:12px;
+  background:#202020;
+  border-radius:10px;
+}
+
+.remove-btn{
+  width:100%;
+  margin-top:8px;
+  border:0;
+  padding:7px;
+  border-radius:7px;
+  background:#442020;
+  color:#ff8d8d;
+  cursor:pointer;
+}
+
+/* PREVIEW */
+
+.preview-area{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+  background:#080808;
+}
+
+.phone{
+  width:min(390px,100%);
+  height:min(760px,85vh);
+  border:8px solid #202020;
+  border-radius:35px;
+  overflow:hidden;
+  box-shadow:0 20px 60px #000;
+}
+
+.page{
+  width:100%;
+  height:100%;
+  overflow:auto;
+  display:flex;
+  justify-content:center;
+  padding:45px 20px;
+  background:#222;
+  background-size:cover;
+  background-position:center;
+}
+
+.page-inner{
+  width:100%;
+  max-width:340px;
+  text-align:center;
+}
+
+.avatar{
+  width:95px;
+  height:95px;
+  object-fit:cover;
+  border-radius:50%;
+  border:3px solid white;
+  margin-bottom:15px;
+  background:#333;
+}
+
+.page-title{
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:8px;
+  word-break:break-word;
+}
+
+.page-description{
+  color:#ddd;
+  line-height:1.5;
+  margin-bottom:25px;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.public-button{
+  display:block;
+  width:100%;
+  padding:14px;
+  margin:12px 0;
+  border-radius:13px;
+  text-decoration:none;
+  color:white;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.public-button:hover{
+  transform:scale(1.02);
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:10;
+}
+
+.modal-box{
+  width:100%;
+  max-width:500px;
+  background:#191919;
+  border-radius:18px;
+  padding:25px;
+}
+
+.modal-box h2{
+  margin-bottom:10px;
+}
+
+.link-box{
+  display:flex;
+  gap:7px;
+  margin-top:15px;
+}
+
+.link-box input{
+  flex:1;
+  min-width:0;
+  background:#252525;
+  border:1px solid #333;
+  color:white;
+  border-radius:9px;
+  padding:10px;
+}
+
+.close-btn{
+  margin-top:15px;
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:#292929;
+  color:white;
+  cursor:pointer;
+}
+
+@media(max-width:800px){
+  .editor-content{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    max-height:none;
+  }
+
+  .preview-area{
+    min-height:700px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
-<section class="preview"><div class="top"><span class="eyebrow"><i class="dot"></i>Prévia ao vivo</span><button class="copy" onclick="copyPage()" aria-label="Copiar endereço">⧉</button></div><div class="phone"><div class="paper"><div class="brand">✦ link page</div><div class="profile"><div class="avatar" id="avatar">S</div><h1 id="viewName">Seu nome aqui</h1><div class="handle" id="viewHandle">@seuusuario</div><p class="bio" id="viewBio">Uma frase curta sobre você, seu trabalho ou o que as pessoas encontram por aqui.</p></div><div class="links" id="viewLinks"></div><div class="footer">feito com intenção <i class="line"></i></div></div></div><p class="note">As alterações ficam salvas neste navegador.</p></section>
-<section class="editor"><div><span class="kicker">Seu espaço digital</span><h2>Monte sua página.</h2><p class="intro">Organize tudo que você quer compartilhar em um só lugar.</p></div><div class="tabs"><button class="active" onclick="tab('profile',this)">Perfil</button><button onclick="tab('links',this)">Links <span id="count">3</span></button><button onclick="tab('style',this)">Estilo</button></div>
-<div class="panel" id="profile"><div class="section"><strong>01</strong><div><h3>Apresente-se</h3><p>Deixe as pessoas saberem quem está por trás dos links.</p></div></div><label>Nome<input id="name" placeholder="Seu nome" oninput="update()"></label><label>Usuário<input id="handle" placeholder="@usuario" oninput="update()"></label><label>Bio<textarea id="bio" maxlength="120" oninput="update()"></textarea><span class="counter" id="counter">0/120</span></label><label>Foto de perfil <small>(opcional)</small><input id="avatarUrl" placeholder="Cole a URL de uma imagem" oninput="update()"></label></div>
-<div class="panel hidden" id="links"><div class="section"><strong>02</strong><div><h3>Seus atalhos</h3><p>Adicione os lugares onde as pessoas podem encontrar você.</p></div></div><div id="linkEditor"></div><button class="add" onclick="addLink()">＋ Adicionar outro link</button></div>
-<div class="panel hidden" id="style"><div class="section"><strong>03</strong><div><h3>Escolha o clima</h3><p>Um fundo que combina com o seu jeito de compartilhar.</p></div></div><div class="colors" id="colors"></div><div class="tip">✦ Escolhemos cores com bom contraste para que seus links continuem fáceis de ler em qualquer tela.</div></div><div class="save">✓ Salvo automaticamente</div></section>
+
+<!-- HOME -->
+
+<section class="home" id="home">
+  <div class="home-box">
+    <div class="logo">PageMaker</div>
+
+    <h1>Crie sua própria página</h1>
+
+    <p>
+      Personalize seu perfil, coloque seus links,
+      escolha as cores e crie sua página em poucos segundos.
+    </p>
+
+    <button class="main-btn" onclick="startEditor()">
+      ✨ Criar minha página
+    </button>
+  </div>
+</section>
+
+
+<!-- EDITOR -->
+
+<section class="editor" id="editor">
+
+  <div class="topbar">
+
+    <h2>PageMaker</h2>
+
+    <div class="top-actions">
+
+      <button class="small-btn preview-btn" onclick="scrollPreview()">
+        👁 Prévia
+      </button>
+
+      <button class="small-btn create-btn" onclick="createPage()">
+        🚀 Criar página
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="editor-content">
+
+    <!-- PAINEL -->
+
+    <aside class="sidebar">
+
+      <h3>Informações</h3>
+
+      <div class="control">
+        <label>Nome / título</label>
+
+        <input
+          type="text"
+          id="title"
+          placeholder="Ex: Maria"
+          oninput="updatePreview()"
+        >
+      </div>
+
+      <div class="control">
+        <label>Descrição</label>
+
+        <textarea
+          id="description"
+          placeholder="Escreva alguma coisa..."
+          oninput="updatePreview()"
+        ></textarea>
+      </div>
+
+
+      <div class="control">
+
+        <label>Foto de perfil</label>
+
+        <label class="file-label">
+          📷 Escolher imagem
+
+          <input
+            type="file"
+            accept="image/*"
+            onchange="loadAvatar(event)"
+          >
+
+        </label>
+
+      </div>
+
+
+      <h3>Aparência</h3>
+
+      <div class="control">
+
+        <label>Cor do fundo</label>
+
+        <input
+          type="color"
+          id="background"
+          value="#222222"
+          oninput="updatePreview()"
+        >
+
+      </div>
+
+
+      <div class="control">
+
+        <label>Cor dos botões</label>
+
+        <input
+          type="color"
+          id="buttonColor"
+          value="#8b5cf6"
+          oninput="updatePreview()"
+        >
+
+      </div>
+
+
+      <div class="control">
+
+        <label>Cor do texto</label>
+
+        <input
+          type="color"
+          id="textColor"
+          value="#ffffff"
+          oninput="updatePreview()"
+        >
+
+      </div>
+
+
+      <div class="control">
+
+        <label>Tamanho do título</label>
+
+        <input
+          type="range"
+          id="titleSize"
+          min="20"
+          max="45"
+          value="28"
+          oninput="updatePreview()"
+        >
+
+      </div>
+
+
+      <h3>Imagem de fundo</h3>
+
+      <div class="control">
+
+        <label class="file-label">
+
+          🖼 Escolher fundo
+
+          <input
+            type="file"
+            accept="image/*"
+            onchange="loadBackground(event)"
+          >
+
+        </label>
+
+      </div>
+
+
+      <h3>Links</h3>
+
+      <div id="buttonsList" class="buttons-list"></div>
+
+      <button class="add-button" onclick="addButton()">
+        ＋ Adicionar botão
+      </button>
+
+    </aside>
+
+
+    <!-- PREVIEW -->
+
+    <main class="preview-area" id="previewArea">
+
+      <div class="phone">
+
+        <div class="page" id="page">
+
+          <div class="page-inner">
+
+            <img
+              id="avatar"
+              class="avatar"
+              style="display:none"
+            >
+
+            <div
+              id="pageTitle"
+              class="page-title"
+            >
+              Seu nome
+            </div>
+
+            <div
+              id="pageDescription"
+              class="page-description"
+            >
+              Sua descrição aparecerá aqui.
+            </div>
+
+            <div id="publicButtons"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</section>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <h2>🎉 Sua página foi criada!</h2>
+
+    <p>
+      Copie o link abaixo para compartilhar sua página.
+    </p>
+
+    <div class="link-box">
+
+      <input id="generatedLink" readonly>
+
+      <button
+        class="small-btn create-btn"
+        onclick="copyLink()"
+      >
+        Copiar
+      </button>
+
+    </div>
+
+    <button
+      class="close-btn"
+      onclick="closeModal()"
+    >
+      Fechar
+    </button>
+
+  </div>
+
 </div>
+
+</div>
+
+
 <script>
-const palettes=[['Creme','#f4eee2','#252321','#fffaf1','#e86a3d'],['Pêssego','#f4d7c7','#342421','#fff2e9','#b94e32'],['Sálvia','#dce3d4','#273229','#f7fbf2','#5b765c'],['Azul céu','#d6e5eb','#213037','#f2fbff','#3b6f83'],['Lavanda','#e6dced','#302936','#fbf5ff','#7c5b8f']];
-const defaults={name:'Seu nome aqui',handle:'@seuusuario',bio:'Uma frase curta sobre você, seu trabalho ou o que as pessoas encontram por aqui.',avatar:'',bg:'#f4eee2',links:[['Meu site principal','https://example.com'],['Instagram','https://instagram.com'],['Entre em contato','mailto:ola@exemplo.com']]};
-let data=JSON.parse(localStorage.getItem('link-page-data')||'null')||defaults;
-function save(){localStorage.setItem('link-page-data',JSON.stringify(data))}
-function update(){data.name=name.value;data.handle=handle.value;data.bio=bio.value;data.avatar=avatarUrl.value;save();render()}
-function render(){name.value=data.name;handle.value=data.handle;bio.value=data.bio;avatarUrl.value=data.avatar;viewName.textContent=data.name||'Seu nome aqui';viewHandle.textContent=data.handle||'@seuusuario';viewBio.textContent=data.bio||'Sua bio aparece aqui.';counter.textContent=(data.bio||'').length+'/120';document.documentElement.style.setProperty('--bg',data.bg);let p=palettes.find(x=>x[1]===data.bg)||palettes[0];document.documentElement.style.setProperty('--ink',p[2]);document.documentElement.style.setProperty('--card',p[3]);document.documentElement.style.setProperty('--accent',p[4]);avatar.innerHTML=data.avatar?'<img src="'+data.avatar+'" alt="">':(data.name||'S').trim().charAt(0).toUpperCase();viewLinks.innerHTML=data.links.map((l,i)=>'<a class="link" href="'+safeUrl(l[1])+'" target="_blank" rel="noreferrer"><span class="link-icon">↗</span><span>'+escapeHtml(l[0]||'Link sem título')+'</span><span>↗</span></a>').join('');count.textContent=data.links.length;linkEditor.innerHTML=data.links.map((l,i)=>'<div class="link-row"><div class="fields"><input value="'+escapeAttr(l[0])+'" placeholder="Nome do link" oninput="changeLink('+i+',0,this.value)"><input value="'+escapeAttr(l[1])+'" placeholder="https://..." oninput="changeLink('+i+',1,this.value)"></div><button class="trash" onclick="removeLink('+i+')">✕</button></div>').join('');colors.innerHTML=palettes.map(p=>'<button class="color '+(data.bg===p[1]?'selected':'')+'" onclick="setColor(\''+p[1]+'\')"><i class="swatch" style="background:'+p[1]+'"></i><b>'+p[0]+'</b><small>'+p[1]+'</small></button>').join('')}
-function safeUrl(u){if(!u)return '#';return /^(https?:|mailto:|tel:)/i.test(u)?u:'https://'+u}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}function escapeAttr(s){return escapeHtml(s)}
-function changeLink(i,j,v){data.links[i][j]=v;save();render()};function addLink(){data.links.push(['Novo link','https://']);save();render()};function removeLink(i){data.links.splice(i,1);save();render()};function setColor(c){data.bg=c;save();render()};function tab(id,btn){document.querySelectorAll('.panel').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')};async function copyPage(){try{await navigator.clipboard.writeText(location.href);alert('Endereço copiado.')}catch(e){alert('Copie o endereço no navegador.')}}
-render();
+
+let avatarData = "";
+let backgroundData = "";
+let buttons = [];
+
+
+/* INICIAR */
+
+function startEditor(){
+
+  document.getElementById("home").style.display = "none";
+
+  document.getElementById("editor").style.display = "block";
+
+  addButton();
+
+  updatePreview();
+}
+
+
+/* AVATAR */
+
+function loadAvatar(event){
+
+  const file = event.target.files[0];
+
+  if(!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+
+    avatarData = e.target.result;
+
+    updatePreview();
+
+  };
+
+  reader.readAsDataURL(file);
+}
+
+
+/* FUNDO */
+
+function loadBackground(event){
+
+  const file = event.target.files[0];
+
+  if(!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+
+    backgroundData = e.target.result;
+
+    updatePreview();
+
+  };
+
+  reader.readAsDataURL(file);
+}
+
+
+/* ADICIONAR BOTÃO */
+
+function addButton(){
+
+  buttons.push({
+    text:"Meu link",
+    url:"https://google.com"
+  });
+
+  renderButtonEditor();
+  updatePreview();
+}
+
+
+/* EDITOR DOS BOTÕES */
+
+function renderButtonEditor(){
+
+  const list = document.getElementById("buttonsList");
+
+  list.innerHTML = "";
+
+  buttons.forEach((button,index)=>{
+
+    const item = document.createElement("div");
+
+    item.className = "button-item";
+
+    item.innerHTML = `
+
+      <div class="control">
+
+        <label>Texto do botão</label>
+
+        <input
+          type="text"
+          value="${escapeHtml(button.text)}"
+          oninput="changeButtonText(${index},this.value)"
+        >
+
+      </div>
+
+      <div class="control">
+
+        <label>Link</label>
+
+        <input
+          type="url"
+          value="${escapeHtml(button.url)}"
+          oninput="changeButtonUrl(${index},this.value)"
+        >
+
+      </div>
+
+      <button
+        class="remove-btn"
+        onclick="removeButton(${index})"
+      >
+        🗑 Remover
+      </button>
+
+    `;
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+/* ALTERAR BOTÃO */
+
+function changeButtonText(index,value){
+
+  buttons[index].text = value;
+
+  updatePreview();
+}
+
+
+function changeButtonUrl(index,value){
+
+  buttons[index].url = value;
+
+  updatePreview();
+}
+
+
+/* REMOVER */
+
+function removeButton(index){
+
+  buttons.splice(index,1);
+
+  renderButtonEditor();
+
+  updatePreview();
+}
+
+
+/* PRÉVIA */
+
+function updatePreview(){
+
+  const page = document.getElementById("page");
+
+  const title = document.getElementById("title").value;
+
+  const description =
+    document.getElementById("description").value;
+
+  const background =
+    document.getElementById("background").value;
+
+  const buttonColor =
+    document.getElementById("buttonColor").value;
+
+  const textColor =
+    document.getElementById("textColor").value;
+
+  const titleSize =
+    document.getElementById("titleSize").value;
+
+
+  page.style.backgroundColor = background;
+
+  page.style.color = textColor;
+
+
+  if(backgroundData){
+
+    page.style.backgroundImage =
+      `url("${backgroundData}")`;
+
+  }else{
+
+    page.style.backgroundImage = "none";
+
+  }
+
+
+  document.getElementById("pageTitle").textContent =
+    title || "Seu nome";
+
+  document.getElementById("pageTitle").style.fontSize =
+    titleSize + "px";
+
+
+  document.getElementById("pageDescription").textContent =
+    description || "Sua descrição aparecerá aqui.";
+
+
+  const avatar =
+    document.getElementById("avatar");
+
+  if(avatarData){
+
+    avatar.src = avatarData;
+
+    avatar.style.display = "inline-block";
+
+  }else{
+
+    avatar.style.display = "none";
+
+  }
+
+
+  const publicButtons =
+    document.getElementById("publicButtons");
+
+  publicButtons.innerHTML = "";
+
+
+  buttons.forEach(button=>{
+
+    const a = document.createElement("a");
+
+    a.className = "public-button";
+
+    a.textContent =
+      button.text || "Meu link";
+
+    a.href =
+      button.url || "#";
+
+    a.target = "_blank";
+
+    a.rel = "noopener noreferrer";
+
+    a.style.background =
+      buttonColor;
+
+    publicButtons.appendChild(a);
+
+  });
+
+}
+
+
+/* CRIAR PÁGINA */
+
+function createPage(){
+
+  const data = {
+
+    title:
+      document.getElementById("title").value,
+
+    description:
+      document.getElementById("description").value,
+
+    background:
+      document.getElementById("background").value,
+
+    buttonColor:
+      document.getElementById("buttonColor").value,
+
+    textColor:
+      document.getElementById("textColor").value,
+
+    titleSize:
+      document.getElementById("titleSize").value,
+
+    avatar:
+      avatarData,
+
+    backgroundImage:
+      backgroundData,
+
+    buttons:
+      buttons
+
+  };
+
+
+  const json =
+    JSON.stringify(data);
+
+  const encoded =
+    encodeBase64(json);
+
+
+  const link =
+    window.location.origin +
+    window.location.pathname +
+    "#page=" +
+    encoded;
+
+
+  document.getElementById("generatedLink").value =
+    link;
+
+  document.getElementById("modal").style.display =
+    "flex";
+
+}
+
+
+/* CODIFICAR */
+
+function encodeBase64(text){
+
+  const bytes =
+    new TextEncoder().encode(text);
+
+  let binary = "";
+
+  bytes.forEach(byte=>{
+    binary += String.fromCharCode(byte);
+  });
+
+  return btoa(binary)
+    .replace(/\+/g,"-")
+    .replace(/\//g,"_")
+    .replace(/=/g,"");
+}
+
+
+/* DECODIFICAR */
+
+function decodeBase64(base64){
+
+  base64 =
+    base64
+      .replace(/-/g,"+")
+      .replace(/_/g,"/");
+
+  while(base64.length % 4){
+    base64 += "=";
+  }
+
+  const binary =
+    atob(base64);
+
+  const bytes =
+    Uint8Array.from(
+      binary,
+      char => char.charCodeAt(0)
+    );
+
+  return new TextDecoder().decode(bytes);
+}
+
+
+/* ABRIR PÁGINA PELO LINK */
+
+function loadPublicPage(){
+
+  const hash =
+    window.location.hash;
+
+  if(!hash.startsWith("#page=")){
+    return;
+  }
+
+  try{
+
+    const encoded =
+      hash.substring(6);
+
+    const data =
+      JSON.parse(
+        decodeBase64(encoded)
+      );
+
+
+    document.getElementById("home").style.display =
+      "none";
+
+    document.getElementById("editor").style.display =
+      "none";
+
+
+    document.body.style.background =
+      data.background;
+
+
+    const publicPage =
+      document.createElement("div");
+
+    publicPage.className = "page";
+
+    publicPage.style.minHeight =
+      "100vh";
+
+    publicPage.style.backgroundColor =
+      data.background;
+
+    publicPage.style.color =
+      data.textColor;
+
+
+    if(data.backgroundImage){
+
+      publicPage.style.backgroundImage =
+        `url("${data.backgroundImage}")`;
+
+    }
+
+
+    const inner =
+      document.createElement("div");
+
+    inner.className =
+      "page-inner";
+
+
+    if(data.avatar){
+
+      const img =
+        document.createElement("img");
+
+      img.className =
+        "avatar";
+
+      img.src =
+        data.avatar;
+
+      inner.appendChild(img);
+
+    }
+
+
+    const title =
+      document.createElement("div");
+
+    title.className =
+      "page-title";
+
+    title.textContent =
+      data.title || "Minha página";
+
+    title.style.fontSize =
+      data.titleSize + "px";
+
+
+    inner.appendChild(title);
+
+
+    const description =
+      document.createElement("div");
+
+    description.className =
+      "page-description";
+
+    description.textContent =
+      data.description || "";
+
+
+    inner.appendChild(description);
+
+
+    data.buttons.forEach(button=>{
+
+      const a =
+        document.createElement("a");
+
+      a.className =
+        "public-button";
+
+      a.textContent =
+        button.text;
+
+      a.href =
+        button.url;
+
+      a.target =
+        "_blank";
+
+      a.rel =
+        "noopener noreferrer";
+
+      a.style.background =
+        data.buttonColor;
+
+
+      inner.appendChild(a);
+
+    });
+
+
+    publicPage.appendChild(inner);
+
+    document.body.innerHTML = "";
+
+    document.body.appendChild(publicPage);
+
+  }catch(error){
+
+    document.body.innerHTML = `
+
+      <div style="
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:white;
+        background:#111;
+        text-align:center;
+        padding:30px;
+      ">
+
+        <div>
+
+          <h1>Ops! 😕</h1>
+
+          <p>
+            Não foi possível carregar essa página.
+          </p>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* COPIAR LINK */
+
+function copyLink(){
+
+  const input =
+    document.getElementById("generatedLink");
+
+  navigator.clipboard.writeText(
+    input.value
+  );
+
+  alert("Link copiado! 🔗");
+
+}
+
+
+/* FECHAR */
+
+function closeModal(){
+
+  document.getElementById("modal").style.display =
+    "none";
+
+}
+
+
+/* IR PARA PRÉVIA */
+
+function scrollPreview(){
+
+  document.getElementById("previewArea")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* SEGURANÇA DO HTML */
+
+function escapeHtml(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* VERIFICAR LINK */
+
+window.addEventListener(
+  "load",
+  loadPublicPage
+);
+
 </script>
+
 </body>
   </html>
