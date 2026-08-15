@@ -1,42 +1,257 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Responde AI — sugestões naturais para conversas difíceis." />
-  <title>Responde AI — sua resposta, sem travar</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torres Hamburgueria</title>
+
   <style>
-    :root{--bg:#080a12;--panel:rgba(18,21,36,.72);--panel2:#151a2c;--line:rgba(255,255,255,.1);--text:#f7f8ff;--muted:#9da5c3;--purple:#9b7cff;--pink:#ff75c3;--cyan:#61e7ff;--green:#7dffa7}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);overflow-x:hidden}
-    body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 15% 10%,rgba(155,124,255,.2),transparent 30%),radial-gradient(circle at 90% 20%,rgba(255,117,195,.13),transparent 26%),radial-gradient(circle at 50% 100%,rgba(97,231,255,.12),transparent 35%)}
-    body:after{content:"";position:fixed;inset:-30%;z-index:-2;opacity:.22;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:52px 52px;transform:rotate(4deg);mask-image:linear-gradient(to bottom,black,transparent 78%);pointer-events:none}
-    .blob{position:fixed;width:320px;height:320px;border-radius:50%;filter:blur(80px);opacity:.22;z-index:-1;animation:float 12s ease-in-out infinite}.blob.one{background:#704cff;top:18%;left:-180px}.blob.two{background:#f84caa;right:-180px;top:48%;animation-delay:-5s}.blob.three{background:#42d8ff;bottom:-190px;left:45%;animation-delay:-8s}@keyframes float{50%{transform:translate(35px,-45px) scale(1.12)}}
-    .wrap{width:min(1100px,calc(100% - 40px));margin:auto}.nav{height:82px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:11px;align-items:center;font-weight:800;letter-spacing:-.03em;font-size:19px}.logo{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 8px 30px rgba(155,124,255,.32);animation:pulse 3s ease-in-out infinite}.logo svg{width:21px}@keyframes pulse{50%{box-shadow:0 8px 40px rgba(255,117,195,.55);transform:rotate(4deg)}}.nav-pill{font-size:12px;color:#cbd0e9;border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:rgba(255,255,255,.035)}
-    .hero{text-align:center;padding:68px 0 36px;animation:rise .8s ease both}.eyebrow{color:#c2b6ff;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}.hero h1{font-size:clamp(42px,7vw,78px);line-height:.99;letter-spacing:-.07em;margin:0 auto 22px;max-width:850px}.gradient{background:linear-gradient(100deg,#fff 10%,#cabdff 45%,#ff93ce 85%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:610px;margin:auto;color:var(--muted);font-size:17px;line-height:1.6}.hero p b{color:#e8eaff}.steps{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:31px 0 0}.step{font-size:12px;color:#b5bbd4;background:rgba(255,255,255,.045);border:1px solid var(--line);padding:8px 12px;border-radius:999px}.step i{display:inline-grid;place-items:center;width:18px;height:18px;margin-right:6px;border-radius:50%;font-style:normal;color:#0b0c13;background:var(--cyan);font-weight:900}
-    .app{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:35px 0 75px}.card{background:linear-gradient(145deg,rgba(23,27,47,.84),rgba(13,15,28,.76));border:1px solid var(--line);border-radius:25px;padding:23px;box-shadow:0 24px 70px rgba(0,0,0,.25);backdrop-filter:blur(18px);animation:rise .8s .1s ease both}.card:nth-child(2){animation-delay:.2s}.card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}.card h2{margin:0;font-size:18px;letter-spacing:-.03em}.hint{color:var(--muted);font-size:12px;margin-top:6px}.badge{font-size:11px;color:#bfffd0;background:rgba(125,255,167,.09);border:1px solid rgba(125,255,167,.22);padding:6px 9px;border-radius:999px}.drop{min-height:290px;border:1px dashed rgba(155,124,255,.58);border-radius:19px;display:grid;place-items:center;text-align:center;padding:25px;cursor:pointer;position:relative;overflow:hidden;transition:.3s ease;background:rgba(155,124,255,.035)}.drop:hover,.drop.drag{border-color:var(--pink);background:rgba(255,117,195,.08);transform:translateY(-3px);box-shadow:0 14px 34px rgba(155,124,255,.13)}.drop input{display:none}.upload-icon{width:62px;height:62px;border-radius:20px;display:grid;place-items:center;margin:0 auto 15px;background:linear-gradient(135deg,rgba(155,124,255,.25),rgba(255,117,195,.17));color:#d6ccff;animation:bob 3.5s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-7px)}}.drop strong{display:block;font-size:15px}.drop small{display:block;color:var(--muted);margin-top:7px;font-size:12px}.preview{width:100%;height:250px;object-fit:contain;border-radius:14px;display:none;background:#090b13}.preview.visible{display:block}.drop.has-image .upload-content{display:none}.drop.has-image{padding:10px}
-    .controls{display:flex;gap:9px;margin-top:15px}.btn{border:0;border-radius:13px;padding:13px 15px;font-weight:800;cursor:pointer;color:white;transition:.25s ease;font-size:13px}.btn:hover{transform:translateY(-2px);filter:brightness(1.1)}.btn.primary{flex:1;background:linear-gradient(100deg,var(--purple),var(--pink));box-shadow:0 10px 27px rgba(155,124,255,.25)}.btn.secondary{background:rgba(255,255,255,.07);border:1px solid var(--line)}.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}.result{min-height:290px;border-radius:19px;background:rgba(5,7,15,.38);border:1px solid rgba(255,255,255,.07);padding:18px;position:relative}.empty{height:250px;display:grid;place-items:center;text-align:center;color:#737b9f;font-size:13px}.empty svg{width:42px;opacity:.55;margin-bottom:10px}.loading{display:none;height:250px;align-items:center;justify-content:center;flex-direction:column;gap:15px;color:#c4b8ff;font-size:13px}.loading.show{display:flex}.orbit{width:48px;height:48px;border:2px solid rgba(155,124,255,.2);border-top-color:var(--pink);border-radius:50%;animation:spin 1s linear infinite;position:relative}.orbit:after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--cyan);top:2px;left:5px;box-shadow:0 0 15px var(--cyan)}@keyframes spin{to{transform:rotate(360deg)}}.answer{display:none;animation:pop .55s ease both}.answer.show{display:block}@keyframes pop{from{opacity:0;transform:scale(.97) translateY(8px)}to{opacity:1;transform:none}}.analysis-label{color:#9c8aff;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.answer h3{font-size:17px;margin:8px 0 12px}.answer p{font-size:14px;line-height:1.6;color:#d6d9eb;margin:0 0 16px}.reply{background:linear-gradient(120deg,rgba(155,124,255,.16),rgba(255,117,195,.12));border:1px solid rgba(195,178,255,.2);border-radius:14px;padding:14px;color:#fff;font-size:14px;line-height:1.55;position:relative}.reply:before{content:"“";position:absolute;top:-16px;left:10px;color:var(--pink);font-size:45px;font-family:Georgia}.copy{margin-top:13px;width:100%;background:rgba(255,255,255,.07);border:1px solid var(--line)}.tone{display:flex;gap:7px;margin-top:16px;flex-wrap:wrap}.tone span{color:#aab1cc;border:1px solid var(--line);padding:6px 9px;border-radius:999px;font-size:11px}.tone span.active{color:#dcd5ff;border-color:#8d7aff;background:rgba(141,122,255,.13)}.footer{text-align:center;color:#69708e;font-size:12px;padding:0 0 35px} .footer span{color:#aa9aff}@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-    @media(max-width:760px){.wrap{width:min(100% - 28px,540px)}.nav{height:70px}.hero{padding:47px 0 25px}.hero h1{font-size:47px}.hero p{font-size:15px}.app{grid-template-columns:1fr;padding-top:25px}.card{padding:17px;border-radius:21px}.drop{min-height:240px}.result{min-height:270px}.nav-pill{display:none}}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #111;
+      color: white;
+    }
+
+    header {
+      background: #0b0b0b;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #e63946;
+    }
+
+    header h1 {
+      color: #e63946;
+      font-size: 32px;
+    }
+
+    header p {
+      color: #ccc;
+      margin-top: 5px;
+    }
+
+    .banner {
+      padding: 50px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #1b1b1b, #3a0d0d);
+    }
+
+    .banner h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .banner span {
+      color: #e63946;
+    }
+
+    .banner p {
+      color: #ddd;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #e63946;
+      color: white;
+      text-decoration: none;
+      padding: 14px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .cardapio {
+      padding: 35px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .cardapio h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 30px;
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .produto {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid #333;
+    }
+
+    .produto .emoji {
+      font-size: 55px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .produto h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+
+    .produto p {
+      color: #aaa;
+      font-size: 14px;
+      min-height: 40px;
+    }
+
+    .preco {
+      color: #e63946;
+      font-size: 22px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .pedir {
+      display: block;
+      text-align: center;
+      background: #e63946;
+      color: white;
+      padding: 11px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .info {
+      background: #181818;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    .info h2 {
+      margin-bottom: 15px;
+    }
+
+    .info p {
+      color: #bbb;
+      margin: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #080808;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media (max-width: 500px) {
+      .banner h2 {
+        font-size: 30px;
+      }
+
+      header h1 {
+        font-size: 27px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <div class="blob one"></div><div class="blob two"></div><div class="blob three"></div>
-  <header class="wrap nav"><div class="brand"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 11.5a7.5 7.5 0 0 1-9.8 7.15L5 20l1.35-4.15A7.5 7.5 0 1 1 20 11.5Z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg></div>Responde AI</div><div class="nav-pill">feito para conversas reais</div></header>
-  <main class="wrap">
-    <section class="hero"><div class="eyebrow">conversa sem travar</div><h1>Não sabe o que responder?<br><span class="gradient">A gente pensa com você.</span></h1><p>Envie uma captura da conversa e receba uma sugestão <b>natural, humana e no tom certo</b> para continuar o papo.</p><div class="steps"><div class="step"><i>1</i> envie a foto</div><div class="step"><i>2</i> deixe a IA analisar</div><div class="step"><i>3</i> copie e mande</div></div></section>
-    <section class="app">
-      <div class="card"><div class="card-head"><div><h2>Sua conversa</h2><div class="hint">A imagem fica apenas neste navegador.</div></div><div class="badge">privado</div></div><label class="drop" id="drop"><input id="file" type="file" accept="image/*"/><div class="upload-content"><div class="upload-icon"><svg width="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5"/><path d="M5 13v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></div><strong>Clique ou arraste a captura aqui</strong><small>PNG, JPG ou WEBP · até 10 MB</small></div><img id="preview" class="preview" alt="Prévia da conversa"/></label><div class="controls"><button class="btn secondary" id="remove" disabled>Limpar</button><button class="btn primary" id="analyze" disabled>Analisar conversa <span>→</span></button></div></div>
-      <div class="card"><div class="card-head"><div><h2>Sugestão da IA</h2><div class="hint">Uma resposta pensada para soar como você.</div></div><div class="badge" style="color:#d9d0ff;background:rgba(155,124,255,.1);border-color:rgba(155,124,255,.25)">online</div></div><div class="result"><div class="empty" id="empty"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 10h8M8 14h5"/><path d="M20 11.5a7.5 7.5 0 0 1-9.8 7.15L5 20l1.35-4.15A7.5 7.5 0 1 1 20 11.5Z"/></svg><br>O que você vai responder?<br>Envie uma captura para começar.</div></div><div class="loading" id="loading"><div class="orbit"></div><span>lendo o contexto da conversa...</span></div><div class="answer" id="answer"><div class="analysis-label">leitura do contexto</div><h3>Leveza, curiosidade e zero pressão.</h3><p>A conversa parece pedir uma resposta descontraída que demonstre interesse sem parecer carente ou forçada.</p><div class="analysis-label">resposta sugerida</div><div class="reply" id="reply">“Hahaha, gostei da sua sinceridade 😄 Mas agora fiquei curioso… o que te fez pensar nisso?”</div><button class="btn copy" id="copy">Copiar resposta <span>⌘ C</span></button><div class="tone"><span class="active">natural</span><span>flertando</span><span>engraçada</span><span>direta</span></div></div></div></div>
-    </section>
-  </main><footer class="footer">Responde AI <span>·</span> pensado para ajudar, não para substituir você.</footer>
-  <script>
-    const file=document.getElementById('file'),drop=document.getElementById('drop'),preview=document.getElementById('preview'),analyze=document.getElementById('analyze'),remove=document.getElementById('remove'),empty=document.getElementById('empty'),loading=document.getElementById('loading'),answer=document.getElementById('answer'),copy=document.getElementById('copy');
-    file.addEventListener('change',()=>{if(file.files[0]) showImage(file.files[0])});
-    ['dragenter','dragover'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.add('drag')}));['dragleave','drop'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.remove('drag')}));drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0]){file.files=e.dataTransfer.files;showImage(e.dataTransfer.files[0])}});
-    function showImage(f){if(!f.type.startsWith('image/'))return;const reader=new FileReader();reader.onload=e=>{preview.src=e.target.result;preview.classList.add('visible');drop.classList.add('has-image');analyze.disabled=false;remove.disabled=false};reader.readAsDataURL(f)}
-    remove.addEventListener('click',()=>{file.value='';preview.src='';preview.classList.remove('visible');drop.classList.remove('has-image');analyze.disabled=true;remove.disabled=true;answer.classList.remove('show');loading.classList.remove('show');empty.style.display='grid'});
-    analyze.addEventListener('click',()=>{empty.style.display='none';answer.classList.remove('show');loading.classList.add('show');analyze.disabled=true;setTimeout(()=>{loading.classList.remove('show');answer.classList.add('show');analyze.disabled=false},1700)});
-    copy.addEventListener('click',async()=>{await navigator.clipboard.writeText(document.getElementById('reply').innerText.replace(/[“”]/g,''));const old=copy.innerHTML;copy.innerHTML='Copiado com sucesso ✓';setTimeout(()=>copy.innerHTML=old,1600)});
-    document.querySelectorAll('.tone span').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.tone span').forEach(x=>x.classList.remove('active'));t.classList.add('active')}));
-  </script>
+
+  <header>
+    <h1>🍔 Torres Hamburgueria</h1>
+    <p>O sabor que você merece!</p>
+  </header>
+
+  <section class="banner">
+    <h2>Seu hambúrguer favorito está <span>aqui!</span></h2>
+    <p>Hambúrguer artesanal, ingredientes frescos e muito sabor.</p>
+
+    <a class="btn" href="#cardapio">Ver Cardápio</a>
+  </section>
+
+  <section class="cardapio" id="cardapio">
+    <h2>🍔 Nosso Cardápio</h2>
+
+    <div class="produtos">
+
+      <div class="produto">
+        <div class="emoji">🍔</div>
+        <h3>Torres Classic</h3>
+        <p>Pão, hambúrguer, queijo, alface, tomate e molho especial.</p>
+        <div class="preco">R$ 25,90</div>
+        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
+          Pedir pelo WhatsApp
+        </a>
+      </div>
+
+      <div class="produto">
+        <div class="emoji">🍔</div>
+        <h3>Torres Bacon</h3>
+        <p>Hambúrguer artesanal, queijo, bacon crocante e molho da casa.</p>
+        <div class="preco">R$ 29,90</div>
+        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
+          Pedir pelo WhatsApp
+        </a>
+      </div>
+
+      <div class="produto">
+        <div class="emoji">🍔</div>
+        <h3>Torres Duplo</h3>
+        <p>Dois hambúrgueres, queijo duplo e molho especial.</p>
+        <div class="preco">R$ 34,90</div>
+        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
+          Pedir pelo WhatsApp
+        </a>
+      </div>
+
+      <div class="produto">
+        <div class="emoji">🍟</div>
+        <h3>Batata Frita</h3>
+        <p>Batata crocante servida com molho especial da casa.</p>
+        <div class="preco">R$ 12,90</div>
+        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
+          Pedir pelo WhatsApp
+        </a>
+      </div>
+
+      <div class="produto">
+        <div class="emoji">🥤</div>
+        <h3>Refrigerante</h3>
+        <p>Refrigerante gelado para acompanhar seu pedido.</p>
+        <div class="preco">R$ 6,00</div>
+        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
+          Pedir pelo WhatsApp
+        </a>
+      </div>
+
+      <div class="produto">
+        <div class="emoji">🍔🍟🥤</div>
+        <h3>Combo Torres</h3>
+        <p>Hambúrguer + batata frita + refrigerante.</p>
+        <div class="preco">R$ 39,90</div>
+        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
+          Pedir pelo WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="info">
+    <h2>📍 Torres Hamburgueria</h2>
+    <p>📍 Endereço: coloque seu endereço aqui</p>
+    <p>🕐 Horário: 18:00 às 23:00</p>
+    <p>📱 WhatsApp: (00) 00000-0000</p>
+  </section>
+
+  <footer>
+    © 2026 Torres Hamburgueria — Todos os direitos reservados.
+  </footer>
+
 </body>
 </html>
