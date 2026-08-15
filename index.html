@@ -1,257 +1,616 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Torres Hamburgueria</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Wall</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #080808;
+    color: white;
+}
+
+.app {
+    min-height: 100vh;
+    display: flex;
+}
+
+/* ================= EDITOR ================= */
+
+.editor {
+    width: 380px;
+    background: #111;
+    border-right: 1px solid #292929;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.logo span {
+    color: #a855f7;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    color: #aaa;
+    margin: 17px 0 7px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    background: #1c1c1c;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 10px;
+    padding: 12px;
+    outline: none;
+}
+
+textarea {
+    height: 80px;
+    resize: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #a855f7;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.save {
+    width: 100%;
+    margin-top: 22px;
+    padding: 13px;
+    border-radius: 10px;
+    background: #a855f7;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.save:hover {
+    opacity: .9;
+}
+
+.share {
+    width: 100%;
+    margin-top: 10px;
+    padding: 13px;
+    border-radius: 10px;
+    background: #222;
+    color: white;
+    font-weight: bold;
+}
+
+/* ================= PREVIEW ================= */
+
+.preview-area {
+    flex: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background:
+        radial-gradient(circle at top, #241331, transparent 45%),
+        #070707;
+}
+
+.phone {
+    width: 390px;
+    max-width: 100%;
+    min-height: 700px;
+    border-radius: 28px;
+    padding: 35px 22px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(160deg, #181818, #080808);
+    box-shadow: 0 20px 80px rgba(0,0,0,.6);
+    text-align: center;
+}
+
+.profile-photo {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    margin-bottom: 14px;
+    background: #222;
+}
+
+.username {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.handle {
+    color: #999;
+    margin-top: 4px;
+}
+
+.bio {
+    margin: 15px auto 22px;
+    max-width: 300px;
+    color: #ccc;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link {
+    display: block;
+    padding: 15px;
+    border-radius: 13px;
+    background: rgba(255,255,255,.1);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.link:hover {
+    transform: scale(1.02);
+    background: rgba(255,255,255,.17);
+}
+
+.footer {
+    margin-top: 30px;
+    color: #666;
+    font-size: 12px;
+}
+
+/* ================= THEMES ================= */
+
+.theme-purple {
+    background: linear-gradient(160deg, #28103c, #080808);
+}
+
+.theme-blue {
+    background: linear-gradient(160deg, #082b45, #080808);
+}
+
+.theme-pink {
+    background: linear-gradient(160deg, #450d2d, #080808);
+}
+
+.theme-green {
+    background: linear-gradient(160deg, #093b29, #080808);
+}
+
+.theme-red {
+    background: linear-gradient(160deg, #430d0d, #080808);
+}
+
+.theme-white {
+    background: linear-gradient(160deg, #eeeeee, #cfcfcf);
+    color: #111;
+}
+
+.theme-white .handle,
+.theme-white .bio,
+.theme-white .footer {
+    color: #444;
+}
+
+.theme-white .link {
+    background: rgba(0,0,0,.08);
+    color: #111;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+    .app {
+        flex-direction: column;
     }
 
-    body {
-      background: #111;
-      color: white;
+    .editor {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #292929;
     }
 
-    header {
-      background: #0b0b0b;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 2px solid #e63946;
+    .preview-area {
+        min-height: 800px;
     }
-
-    header h1 {
-      color: #e63946;
-      font-size: 32px;
-    }
-
-    header p {
-      color: #ccc;
-      margin-top: 5px;
-    }
-
-    .banner {
-      padding: 50px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #1b1b1b, #3a0d0d);
-    }
-
-    .banner h2 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .banner span {
-      color: #e63946;
-    }
-
-    .banner p {
-      color: #ddd;
-      margin-bottom: 25px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #e63946;
-      color: white;
-      text-decoration: none;
-      padding: 14px 25px;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-
-    .cardapio {
-      padding: 35px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .cardapio h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 30px;
-    }
-
-    .produtos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 20px;
-    }
-
-    .produto {
-      background: #1c1c1c;
-      padding: 20px;
-      border-radius: 15px;
-      border: 1px solid #333;
-    }
-
-    .produto .emoji {
-      font-size: 55px;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .produto h3 {
-      font-size: 21px;
-      margin-bottom: 8px;
-    }
-
-    .produto p {
-      color: #aaa;
-      font-size: 14px;
-      min-height: 40px;
-    }
-
-    .preco {
-      color: #e63946;
-      font-size: 22px;
-      font-weight: bold;
-      margin: 15px 0;
-    }
-
-    .pedir {
-      display: block;
-      text-align: center;
-      background: #e63946;
-      color: white;
-      padding: 11px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .info {
-      background: #181818;
-      padding: 35px 20px;
-      text-align: center;
-    }
-
-    .info h2 {
-      margin-bottom: 15px;
-    }
-
-    .info p {
-      color: #bbb;
-      margin: 8px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #080808;
-      color: #777;
-      font-size: 14px;
-    }
-
-    @media (max-width: 500px) {
-      .banner h2 {
-        font-size: 30px;
-      }
-
-      header h1 {
-        font-size: 27px;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>🍔 Torres Hamburgueria</h1>
-    <p>O sabor que você merece!</p>
-  </header>
+<div class="app">
 
-  <section class="banner">
-    <h2>Seu hambúrguer favorito está <span>aqui!</span></h2>
-    <p>Hambúrguer artesanal, ingredientes frescos e muito sabor.</p>
+    <!-- EDITOR -->
+    <div class="editor">
 
-    <a class="btn" href="#cardapio">Ver Cardápio</a>
-  </section>
+        <div class="logo">
+            Profile<span>Wall</span>
+        </div>
 
-  <section class="cardapio" id="cardapio">
-    <h2>🍔 Nosso Cardápio</h2>
+        <label>Foto de perfil</label>
+        <input type="file" id="photo" accept="image/*">
 
-    <div class="produtos">
+        <label>Nome</label>
+        <input id="name" placeholder="Seu nome">
 
-      <div class="produto">
-        <div class="emoji">🍔</div>
-        <h3>Torres Classic</h3>
-        <p>Pão, hambúrguer, queijo, alface, tomate e molho especial.</p>
-        <div class="preco">R$ 25,90</div>
-        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
-          Pedir pelo WhatsApp
-        </a>
-      </div>
+        <label>@Usuário</label>
+        <input id="username" placeholder="@seunome">
 
-      <div class="produto">
-        <div class="emoji">🍔</div>
-        <h3>Torres Bacon</h3>
-        <p>Hambúrguer artesanal, queijo, bacon crocante e molho da casa.</p>
-        <div class="preco">R$ 29,90</div>
-        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
-          Pedir pelo WhatsApp
-        </a>
-      </div>
+        <label>Bio</label>
+        <textarea id="bio" placeholder="Escreva alguma coisa sobre você..."></textarea>
 
-      <div class="produto">
-        <div class="emoji">🍔</div>
-        <h3>Torres Duplo</h3>
-        <p>Dois hambúrgueres, queijo duplo e molho especial.</p>
-        <div class="preco">R$ 34,90</div>
-        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
-          Pedir pelo WhatsApp
-        </a>
-      </div>
+        <label>Instagram</label>
+        <input id="instagram" placeholder="https://instagram.com/">
 
-      <div class="produto">
-        <div class="emoji">🍟</div>
-        <h3>Batata Frita</h3>
-        <p>Batata crocante servida com molho especial da casa.</p>
-        <div class="preco">R$ 12,90</div>
-        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
-          Pedir pelo WhatsApp
-        </a>
-      </div>
+        <label>TikTok</label>
+        <input id="tiktok" placeholder="https://tiktok.com/@">
 
-      <div class="produto">
-        <div class="emoji">🥤</div>
-        <h3>Refrigerante</h3>
-        <p>Refrigerante gelado para acompanhar seu pedido.</p>
-        <div class="preco">R$ 6,00</div>
-        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
-          Pedir pelo WhatsApp
-        </a>
-      </div>
+        <label>YouTube</label>
+        <input id="youtube" placeholder="https://youtube.com/">
 
-      <div class="produto">
-        <div class="emoji">🍔🍟🥤</div>
-        <h3>Combo Torres</h3>
-        <p>Hambúrguer + batata frita + refrigerante.</p>
-        <div class="preco">R$ 39,90</div>
-        <a class="pedir" href="https://wa.me/5500000000000" target="_blank">
-          Pedir pelo WhatsApp
-        </a>
-      </div>
+        <label>Discord</label>
+        <input id="discord" placeholder="https://discord.com/">
+
+        <label>Outro link</label>
+        <input id="other" placeholder="https://seusite.com">
+
+        <label>Tema</label>
+        <select id="theme">
+            <option value="theme-purple">Roxo</option>
+            <option value="theme-blue">Azul</option>
+            <option value="theme-pink">Rosa</option>
+            <option value="theme-green">Verde</option>
+            <option value="theme-red">Vermelho</option>
+            <option value="theme-white">Claro</option>
+        </select>
+
+        <button class="save" onclick="saveProfile()">
+            💾 Salvar perfil
+        </button>
+
+        <button class="share" onclick="shareProfile()">
+            🔗 Compartilhar perfil
+        </button>
 
     </div>
-  </section>
 
-  <section class="info">
-    <h2>📍 Torres Hamburgueria</h2>
-    <p>📍 Endereço: coloque seu endereço aqui</p>
-    <p>🕐 Horário: 18:00 às 23:00</p>
-    <p>📱 WhatsApp: (00) 00000-0000</p>
-  </section>
 
-  <footer>
-    © 2026 Torres Hamburgueria — Todos os direitos reservados.
-  </footer>
+    <!-- PREVIEW -->
+    <div class="preview-area">
+
+        <div class="phone theme-purple" id="profile">
+
+            <img
+                id="previewPhoto"
+                class="profile-photo"
+                src="https://placehold.co/200x200/222/fff?text=Foto"
+            >
+
+            <div class="username" id="previewName">
+                Seu Nome
+            </div>
+
+            <div class="handle" id="previewUsername">
+                @seunome
+            </div>
+
+            <div class="bio" id="previewBio">
+                Sua bio aparecerá aqui.
+            </div>
+
+            <div class="links" id="links">
+
+                <a id="instagramLink"
+                   class="link"
+                   href="#"
+                   target="_blank"
+                   style="display:none;">
+                    📸 Instagram
+                </a>
+
+                <a id="tiktokLink"
+                   class="link"
+                   href="#"
+                   target="_blank"
+                   style="display:none;">
+                    🎵 TikTok
+                </a>
+
+                <a id="youtubeLink"
+                   class="link"
+                   href="#"
+                   target="_blank"
+                   style="display:none;">
+                    ▶️ YouTube
+                </a>
+
+                <a id="discordLink"
+                   class="link"
+                   href="#"
+                   target="_blank"
+                   style="display:none;">
+                    💬 Discord
+                </a>
+
+                <a id="otherLink"
+                   class="link"
+                   href="#"
+                   target="_blank"
+                   style="display:none;">
+                    🔗 Meu link
+                </a>
+
+            </div>
+
+            <div class="footer">
+                Criado com ProfileWall
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const fields = [
+    "name",
+    "username",
+    "bio",
+    "instagram",
+    "tiktok",
+    "youtube",
+    "discord",
+    "other",
+    "theme"
+];
+
+fields.forEach(id => {
+    document.getElementById(id).addEventListener("input", updatePreview);
+    document.getElementById(id).addEventListener("change", updatePreview);
+});
+
+document.getElementById("photo").addEventListener("change", function(e) {
+
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        document.getElementById("previewPhoto").src =
+            event.target.result;
+
+        localStorage.setItem(
+            "profilePhoto",
+            event.target.result
+        );
+    };
+
+    reader.readAsDataURL(file);
+});
+
+
+function updatePreview() {
+
+    document.getElementById("previewName").textContent =
+        document.getElementById("name").value || "Seu Nome";
+
+    document.getElementById("previewUsername").textContent =
+        document.getElementById("username").value || "@seunome";
+
+    document.getElementById("previewBio").textContent =
+        document.getElementById("bio").value ||
+        "Sua bio aparecerá aqui.";
+
+    updateLink(
+        "instagram",
+        "instagramLink",
+        "📸 Instagram"
+    );
+
+    updateLink(
+        "tiktok",
+        "tiktokLink",
+        "🎵 TikTok"
+    );
+
+    updateLink(
+        "youtube",
+        "youtubeLink",
+        "▶️ YouTube"
+    );
+
+    updateLink(
+        "discord",
+        "discordLink",
+        "💬 Discord"
+    );
+
+    updateLink(
+        "other",
+        "otherLink",
+        "🔗 Meu link"
+    );
+
+    const profile =
+        document.getElementById("profile");
+
+    profile.className =
+        "phone " +
+        document.getElementById("theme").value;
+}
+
+
+function updateLink(inputId, linkId, text) {
+
+    const value =
+        document.getElementById(inputId).value.trim();
+
+    const link =
+        document.getElementById(linkId);
+
+    if (value) {
+
+        link.style.display = "block";
+
+        link.href = normalizeURL(value);
+
+        link.textContent = text;
+
+    } else {
+
+        link.style.display = "none";
+
+    }
+}
+
+
+function normalizeURL(url) {
+
+    if (
+        url.startsWith("http://") ||
+        url.startsWith("https://")
+    ) {
+        return url;
+    }
+
+    return "https://" + url;
+}
+
+
+function saveProfile() {
+
+    const data = {};
+
+    fields.forEach(id => {
+        data[id] =
+            document.getElementById(id).value;
+    });
+
+    localStorage.setItem(
+        "profileWall",
+        JSON.stringify(data)
+    );
+
+    alert("✅ Perfil salvo!");
+}
+
+
+function loadProfile() {
+
+    const saved =
+        localStorage.getItem("profileWall");
+
+    if (saved) {
+
+        const data = JSON.parse(saved);
+
+        fields.forEach(id => {
+
+            if (data[id] !== undefined) {
+                document.getElementById(id).value =
+                    data[id];
+            }
+
+        });
+    }
+
+    const photo =
+        localStorage.getItem("profilePhoto");
+
+    if (photo) {
+        document.getElementById("previewPhoto").src =
+            photo;
+    }
+
+    updatePreview();
+}
+
+
+async function shareProfile() {
+
+    const username =
+        document.getElementById("username").value ||
+        "meu-perfil";
+
+    const url =
+        window.location.href.split("#")[0] +
+        "#" +
+        encodeURIComponent(username);
+
+    if (navigator.share) {
+
+        try {
+
+            await navigator.share({
+                title: "Meu ProfileWall",
+                text: "Confira meu perfil!",
+                url: url
+            });
+
+        } catch (error) {}
+
+    } else {
+
+        try {
+
+            await navigator.clipboard.writeText(url);
+
+            alert(
+                "🔗 Link copiado!\n\n" +
+                url
+            );
+
+        } catch (error) {
+
+            prompt(
+                "Copie seu link:",
+                url
+            );
+
+        }
+
+    }
+}
+
+
+loadProfile();
+
+</script>
 
 </body>
-</html>
+  </html>
